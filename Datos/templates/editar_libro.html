@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+	<div class="block-header">
+		<h2> Editorial </h2>
+	</div>
+
+	{% if obtener == "error" %}
+		<div class="alert alert-warning alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			No se Encontro
+		</div>
+	{% endif %}
+
+	<!-- Form -->
+	<div class="row clearfix">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="card">
+				<div class="header">
+					<h2>
+						Editar
+					</h2>
+					<ul class="header-dropdown m-r--5">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a href="javascript:void(0);">Action</a></li>
+								<li><a href="javascript:void(0);">Another action</a></li>
+								<li><a href="javascript:void(0);">Something else here</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="body">
+					<form method="post" action="{% url 'actualizar_libro' %}" enctype="multipart/form-data">
+						{% csrf_token %}
+						<!-- <label> ISBN </label>
+						<div class="form-group">
+							<div class="form-line"> -->
+								<input type="hidden" class="form-control" name="id_libro" value="{{ libro.id_libro }}">
+							<!-- </div>
+						</div> -->
+						<label> Título </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="text" class="form-control" name="titulo" value="{{ libro.titulo }}">
+							</div>
+						</div>
+						<label> Año Publicación </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="number" class="form-control" name="anio" value="{{ libro.anio }}">
+							</div>
+						</div>
+						<label> Páginas </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="number" class="form-control" name="paginas" value="{{ libro.paginas }}">
+							</div>
+						</div>
+						<label> Foto </label>
+						<div class="form-group">
+							<div class="form-line">
+								Actualmente: 
+								{% if libro.foto %}
+									<a href="{{ libro.foto.url }}" target="_blank"> {{ libro.foto.url }}</a>
+								{% endif %}
+								<input type="file" class="form-control" name="foto" placeholder="No es Obligatorio" accept="image/*">
+							</div>
+						</div>
+						<label> Contenido </label>
+						<div class="form-group">
+							<div class="form-line">
+								Actualmente: 
+								{% if libro.contenido %}
+									<a href="{{ libro.contenido.url }}" target="_blank"> {{ libro.contenido.url }}</a>
+								{% endif %}
+								<input type="file" class="form-control" name="contenido" placeholder="No es Obligatorio">
+							</div>
+						</div>
+						<label> Editorial </label>
+						<div class="form-group">
+							<div class="form-line">
+								<select class="form-control show-tick" data-live-search="true" name="id_editorial">
+									{% for item in editoriales %}
+										{% if libro.id_editorial.id_editorial == item.id_editorial %}
+											<option value="{{ item.id_editorial }}" selected> {{ item.nombre }} </option>
+										{% else %}
+											<option value="{{ item.id_editorial }}"> {{ item.nombre }} </option>
+										{% endif %}
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<label> Autores </label>
+						<div class="form-group">
+							<div class="form-line">
+								<select class="form-control show-tick" multiple data-live-search="true" name="ids_autor">
+									{% for item in autores %}
+										{% if item in libro.ids_autor.all %}
+											<option value="{{ item.id_autor }}" selected> {{ item.nombres }} {{ item.apellidos }} </option>
+										{% else %}
+											<option value="{{ item.id_autor }}"> {{ item.nombres }} {{ item.apellidos }} </option>
+										{% endif %}										
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<br>
+						<button type="submit" class="btn btn-primary m-t-15 waves-effect"> Actualizar </button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #END# Form -->
+{% endblock %}
+
+{% block detalle %}
+
+{% endblock %}

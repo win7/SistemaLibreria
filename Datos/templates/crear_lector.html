@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+	<div class="block-header">
+		<h2> Lector </h2>
+	</div>
+
+	<!-- Form -->
+	<div class="row clearfix">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="card">
+				<div class="header">
+					<h2>
+						Nuevo
+					</h2>
+					<ul class="header-dropdown m-r--5">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a href="javascript:void(0);">Action</a></li>
+								<li><a href="javascript:void(0);">Another action</a></li>
+								<li><a href="javascript:void(0);">Something else here</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="body">
+					<form method="post">
+						{% csrf_token %}
+						<label> DNI </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="text" class="form-control" name="id_lector">
+							</div>
+						</div>
+						<label> Nombres </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="text" class="form-control" name="nombres">
+							</div>
+						</div>
+						<label> Apellidos </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="text" class="form-control" name="apellidos">
+							</div>
+						</div>
+						<label> Teléfono </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="tel" class="form-control" name="telefono" placeholder="Ingresa su teléfono">
+							</div>
+						</div>
+						<label> Grupo </label>
+						<div class="form-group">
+							<div class="form-line">
+								<select class="form-control show-tick" data-live-search="true" name="grupo">
+									<option value="est"> Estudiante </option>
+									<option value="doc"> Docente </option>
+								</select>
+							</div>
+						</div>
+						<br>
+						<button type="submit" class="btn btn-primary m-t-15 waves-effect"> Guardar </button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #END# Form -->
+{% endblock %}
+
+{% block detalle %}
+
+{% endblock %}

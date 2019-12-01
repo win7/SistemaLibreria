@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+	<div class="block-header">
+		<h2> Lector </h2>
+	</div>
+
+	{% if obtener == "error" %}
+		<div class="alert alert-warning alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			No se Encontro
+		</div>
+	{% endif %}
+
+	<!-- Form -->
+	<div class="row clearfix">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="card">
+				<div class="header">
+					<h2>
+						Editar
+					</h2>
+					<ul class="header-dropdown m-r--5">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a href="javascript:void(0);">Action</a></li>
+								<li><a href="javascript:void(0);">Another action</a></li>
+								<li><a href="javascript:void(0);">Something else here</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="body">
+					<form method="post" action="{% url 'actualizar_lector' %}">
+						{% csrf_token %}
+						<!-- <label> DNI </label> -->
+						<!-- <div class="form-group">
+							<div class="form-line"> -->
+								<input type="hidden" class="form-control" name="id_lector" value="{{ lector.id_lector }}">
+							<!-- </div>
+						</div> -->
+						<label> Nombres </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="text" class="form-control" name="nombres" value="{{ lector.nombres }}">
+							</div>
+						</div>
+						<label> Apellidos </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="text" class="form-control" name="apellidos" value="{{ lector.apellidos }}">
+							</div>
+						</div>
+
+						<label> Teléfono </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="tel" class="form-control" name="telefono" placeholder="Ingresa su teléfono" value="{{ lector.telefono }}">
+							</div>
+						</div>
+						<label> Grupo </label>
+						<div class="form-group">
+							<div class="form-line">
+								<select class="form-control show-tick" data-live-search="true" name="grupo">
+									<option value="est" {% if lector.grupo == "est" %} selected {% else %} {% endif %}> Estudiante </option>
+									<option value="doc" {% if lector.grupo == "doc" %} selected {% else %} {% endif %}> Docente </option>
+								</select>
+							</div>
+						</div>
+						<br>
+						<button type="submit" class="btn btn-primary m-t-15 waves-effect"> Actualizar </button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #END# Form -->
+{% endblock %}
+
+{% block detalle %}
+
+{% endblock %}

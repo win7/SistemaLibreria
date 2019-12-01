@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+	<div class="block-header">
+		<h2> Lector </h2>
+	</div>
+
+	<!-- Form -->
+	<div class="row clearfix">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="card">
+				<div class="header">
+					<h2>
+						Lista
+					</h2>
+					<ul class="header-dropdown m-r--5">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a href="javascript:void(0);">Action</a></li>
+								<li><a href="javascript:void(0);">Another action</a></li>
+								<li><a href="javascript:void(0);">Something else here</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="body">
+					<div class="table-responsive">
+						<table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+							<thead>
+								<tr>
+									<th> DNI </th>
+									<th> Nombres </th>
+									<th> Apellidos </th>
+									<th> Teléfono </th>
+									<th> Grupo </th>
+									<th> Acciones </th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th> DNI </th>
+									<th> Nombres </th>
+									<th> Apellidos </th>
+									<th> Teléfono </th>
+									<th> Grupo </th>
+									<th> Acciones </th>
+								</tr>
+							</tfoot>
+							<tbody>
+								{% for item in lectores %}
+									<tr>
+										<td> {{ item.id_lector }} </td>
+										<td> {{ item.nombres }} </td>
+										<td> {{ item.apellidos }} </td>
+										<td> {{ item.telefono }} </td>
+										<td> {{ item.get_grupo_display }} </td>
+										<td>
+											<a href="{% url 'obtener_lector' item.id_lector %}" class="waves-effect" data-toggle="tooltip" data-placement="top" title="Editar">
+												<i class="material-icons col-blue">edit</i>
+											</a>
+
+											<a href="{% url 'eliminar_lector' item.id_lector %}" class="waves-effect" data-toggle="tooltip" data-placement="top" title="Eliminar" onClick="return confirm('Estas seguro?');">
+												<i class="material-icons col-red">delete</i>
+											</a>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+		</div>
+			</div>
+		</div>
+	</div>
+	<!-- #END# Form -->
+{% endblock %}
+
+{% block detalle %}
+
+{% endblock %}

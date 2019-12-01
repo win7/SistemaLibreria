@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+	<div class="block-header">
+		<h2> Editorial </h2>
+	</div>
+
+	<!-- Form -->
+	<div class="row clearfix">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="card">
+				<div class="header">
+					<h2>
+						Lista
+					</h2>
+					<ul class="header-dropdown m-r--5">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a href="javascript:void(0);">Action</a></li>
+								<li><a href="javascript:void(0);">Another action</a></li>
+								<li><a href="javascript:void(0);">Something else here</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="body">
+					<div class="table-responsive">
+						<table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+							<thead>
+								<tr>
+									<th> Id Editorial </th>
+									<th> Nombre </th>
+									<th> País </th>
+									<th> Acciones </th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th> Id Editorial </th>
+									<th> Nombre </th>
+									<th> País </th>
+									<th> Acciones </th>
+								</tr>
+							</tfoot>
+							<tbody>
+								{% for item in editoriales %}
+									<tr>
+										<td> {{ item.id_editorial }} </td>
+										<td> {{ item.nombre }} </td>
+										<td> {{ item.id_pais }} </td>
+										<td>
+											<a href="{% url 'obtener_editorial' item.id_editorial %}" class="waves-effect" data-toggle="tooltip" data-placement="top" title="Editar">
+												<i class="material-icons col-blue">edit</i>
+											</a>
+
+											<a href="{% url 'eliminar_editorial' item.id_editorial %}" class="waves-effect" data-toggle="tooltip" data-placement="top" title="Eliminar" onClick="return confirm('Estas seguro?');">
+												<i class="material-icons col-red">delete</i>
+											</a>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+		</div>
+			</div>
+		</div>
+	</div>
+	<!-- #END# Form -->
+{% endblock %}
+
+{% block detalle %}
+
+{% endblock %}

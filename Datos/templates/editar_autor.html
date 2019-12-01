@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+	<div class="block-header">
+		<h2> Autor </h2>
+	</div>
+
+	{% if obtener == "error" %}
+		<div class="alert alert-warning alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			No se Encontro
+		</div>
+	{% endif %}
+
+	<!-- Form -->
+	<div class="row clearfix">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="card">
+				<div class="header">
+					<h2>
+						Editar
+					</h2>
+					<ul class="header-dropdown m-r--5">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a href="javascript:void(0);">Action</a></li>
+								<li><a href="javascript:void(0);">Another action</a></li>
+								<li><a href="javascript:void(0);">Something else here</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="body">
+					<form method="post" action="{% url 'actualizar_autor' %}" enctype="multipart/form-data">
+						{% csrf_token %}
+						<label> Id Editorial </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="text" class="form-control" name="id_autor" value="{{ autor.id_autor }}">
+							</div>
+						</div>
+						<label> Nombres </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="text" class="form-control" name="nombres" value="{{ autor.nombres }}">
+							</div>
+						</div>
+						<label> Apellidos </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="text" class="form-control" name="apellidos" value="{{ autor.apellidos }}">
+							</div>
+						</div>
+						<label> Email </label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="email" class="form-control" name="email" placeholder="Ingresa su email" value="{{ autor.email }}">
+							</div>
+						</div>
+						<label> Foto </label>
+						<div class="form-group">
+							<div class="form-line">
+								Actualmente: 
+								{% if autor.foto %}
+									<a href="{{ autor.foto.url }}" target="_blank"> {{ autor.foto.url }}</a>
+								{% endif %}
+								<input type="file" class="form-control" name="foto" placeholder="No es Obligatorio">
+							</div>
+						</div>
+						<br>
+						<button type="submit" class="btn btn-primary m-t-15 waves-effect"> Actualizar </button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #END# Form -->
+{% endblock %}
+
+{% block detalle %}
+
+{% endblock %}
